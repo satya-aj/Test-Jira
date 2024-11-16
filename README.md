@@ -1,6 +1,15 @@
 # Test-Jira
 
-Test-Jira
+## Setup github pages
+
+Navigate to Repo settings -> Pages
+Under Build and Deployment
+Select main Branch and /root and save
+
+## TODO in Middleware.py file
+
+Replace GITHUB_TOKEN with your github token in line 9
+Replace Github url in line 27
 
 Steps to run
 
