@@ -1,7 +1,6 @@
 name: Jira Issue Created
 on:
-  issues:
-    types: [created]
+  issue_comment:
 
 jobs:
   build:
