@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/satya-aj/Test-Jira#readme",
   "dependencies": {
-    "@actions/core": "^1.11.1"
+    "@actions/core": "^1.11.1",
+    "jira-client": "^3.4.0"
   }
 }
