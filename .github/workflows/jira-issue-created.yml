@@ -1,7 +1,7 @@
 name: Jira Issue Created
 on:
-  webhook:
-    types: [issue_created]
+  issues:
+    types: [created]
 
 jobs:
   build:
@@ -30,9 +30,10 @@ jobs:
 
             const jira = new jiraClient({
               host: 'https://testprojectgithub.atlassian.net',
-              username: 'apptya.a@gmail.com',
-              password: "asd"  # Closing quote added
+              username: 'app.satya.a@gmail.com',
+              password:  'ATATT3xFfGF0-XAPGvvbKpL0eodYMGMmEkPaIYh99zHmoYQlo6PhqoeMAFJ7C9iCpjfHs4djX7Wkb5mTnRp2xLdZyDDXY7NtDVWpanpbta3hX8IdXQ7sfndFpl20c_AZyEcTJWCk1gqFuBrzBVAKmrYxmi5tUQ_6h8lRLwy9quc9inheLIXe8f4=DBDD9963',
             });
+
 
             const issueId = context.payload.issue.id;
             jira.issues.getIssue({ issueId })
