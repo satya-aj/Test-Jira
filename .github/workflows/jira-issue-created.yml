@@ -5,7 +5,6 @@ on:
     inputs:
       issue_id:
         description: "The ID of the Jira issue"
-        required: true
 
 jobs:
   build:
