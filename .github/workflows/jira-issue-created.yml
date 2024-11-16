@@ -11,7 +11,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: "16"
       - name: Cache Node modules
         uses: actions/cache@v3
         with:
@@ -30,8 +30,8 @@ jobs:
 
             const jira = new jiraClient({
               host: 'https://testprojectgithub.atlassian.net',
-              username: 'app.satya.a@gmail.com',
-              password:  'ATATT3xFfGF0-XAPGvvbKpL0eodYMGMmEkPaIYh99zHmoYQlo6PhqoeMAFJ7C9iCpjfHs4djX7Wkb5mTnRp2xLdZyDDXY7NtDVWpanpbta3hX8IdXQ7sfndFpl20c_AZyEcTJWCk1gqFuBrzBVAKmrYxmi5tUQ_6h8lRLwy9quc9inheLIXe8f4=DBDD9963',
+              username: 'apptya.a@gmail.com',
+              password: "asd"  # Closing quote added
             });
 
             const issueId = context.payload.issue.id;
