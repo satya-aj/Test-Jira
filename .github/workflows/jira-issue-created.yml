@@ -1,6 +1,11 @@
 name: Jira Issue Created
 on:
   issue_comment:
+  workflow_dispatch:
+    inputs:
+      issue_id:
+        description: "The ID of the Jira issue"
+        required: true
 
 jobs:
   build:
