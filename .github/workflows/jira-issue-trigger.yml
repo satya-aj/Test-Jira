@@ -1,7 +1,6 @@
 name: Jira Issue Trigger
 
 on:
-  workflow_dispatch: # Can be triggered manually
   repository_dispatch:
     types: [jira_issue_created]
 
