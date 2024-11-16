@@ -1,39 +1,3 @@
-# name: Jira Issue Created
-# on:
-#   issues:
-#     types: [created]
-
-# jobs:
-#   build:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: actions/checkout@v3
-#       - uses: atlassian-atlassian-jira/jira-action@v3
-#         with:
-#           token: ${{ secrets.JIRA_TOKEN }}
-#           issue_id: ${{ github.event.issue.number }}
-#           field_names:
-#             - summary
-#             - description
-#             - labels
-#       - uses: actions/create-file@v2
-#         with:
-#           content: 'hi'
-#           path: 'docs/index.html'
-#       - uses: actions/upload-artifact@v2
-#         with:
-#           path: 'docs/index.html'
-#           artifact_name: 'index.html'
-#       - uses: actions/deploy-pages@v2
-#         with:
-#           artifact_name: 'index.html'
-#           publish_directory: 'docs'
-
-# secrets:
-#   JIRA_TOKEN:
-#     value: 'ATATT3xFfGF0-XAPGvvbKpL0eodYMGMmEkPaIYh99zHmoYQlo6PhqoeMAFJ7C9iCpjfHs4djX7Wkb5mTnRp2xLdZyDDXY7NtDVWpanpbta3hX8IdXQ7sfndFpl20c_AZyEcTJWCk1gqFuBrzBVAKmrYxmi5tUQ_6h8lRLwy9quc9inheLIXe8f4=DBDD9963'
-
-
 name: Jira Issue Created
 on:
   webhook:
