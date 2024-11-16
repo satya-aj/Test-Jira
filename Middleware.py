@@ -6,13 +6,14 @@ app = Flask(__name__)
 
 # GitHub API and Token
 GITHUB_DISPATCH_URL = "https://api.github.com/repos/satya-aj/Test-Jira/dispatches"
+GITHUB_TOKEN = "" #Replace github token
 
 @app.route("/jira-webhook", methods=["POST"])
 def jira_webhook():
     data = request.json
     if data.get("issue_event_type_name") == "issue_created":
         headers = {
-            "Authorization": f"token {d}",
+            "Authorization": f"token {GITHUB_TOKEN}",
             "Accept": "application/vnd.github.v3+json",
         }
         payload = {
@@ -39,7 +40,7 @@ def form_created():
     data = request.json
     if data.get("form_name"):
         headers = {
-            "Authorization": f"token {s}",
+            "Authorization": f"token {GITHUB_TOKEN}",
             "Accept": "application/vnd.github.v3+json",
         }
         payload = {
