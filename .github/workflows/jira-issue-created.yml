@@ -29,7 +29,7 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const core = require('@actions/core');
+            const core1 = require('@actions/core');
             const jiraClient = require('jira-client');
 
             const jira = new jiraClient({
@@ -43,9 +43,9 @@ jobs:
             jira.issues.getIssue({ issueId })
               .then(issue => {
                 // Process issue details and trigger deployment
-                core.setOutput('issueSummary', issue.fields.summary);
+                core1.setOutput('issueSummary', issue.fields.summary);
                 // ... other actions to trigger deployment
               })
               .catch(error => {
-                core.setFailed(`Error fetching issue: ${error}`);
+                core1.setFailed(`Error fetching issue: ${error}`);
               });
