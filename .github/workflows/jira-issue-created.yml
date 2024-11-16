@@ -1,0 +1,82 @@
+# name: Jira Issue Created
+# on:
+#   issues:
+#     types: [created]
+
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v3
+#       - uses: atlassian-atlassian-jira/jira-action@v3
+#         with:
+#           token: ${{ secrets.JIRA_TOKEN }}
+#           issue_id: ${{ github.event.issue.number }}
+#           field_names:
+#             - summary
+#             - description
+#             - labels
+#       - uses: actions/create-file@v2
+#         with:
+#           content: 'hi'
+#           path: 'docs/index.html'
+#       - uses: actions/upload-artifact@v2
+#         with:
+#           path: 'docs/index.html'
+#           artifact_name: 'index.html'
+#       - uses: actions/deploy-pages@v2
+#         with:
+#           artifact_name: 'index.html'
+#           publish_directory: 'docs'
+
+# secrets:
+#   JIRA_TOKEN:
+#     value: 'ATATT3xFfGF0-XAPGvvbKpL0eodYMGMmEkPaIYh99zHmoYQlo6PhqoeMAFJ7C9iCpjfHs4djX7Wkb5mTnRp2xLdZyDDXY7NtDVWpanpbta3hX8IdXQ7sfndFpl20c_AZyEcTJWCk1gqFuBrzBVAKmrYxmi5tUQ_6h8lRLwy9quc9inheLIXe8f4=DBDD9963'
+
+
+name: Jira Issue Created
+on:
+  webhook:
+    types: [issue_created]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      - name: Cache Node modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: Install dependencies
+        run: npm install
+      - name: Trigger Deployment
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const core = require('@actions/core');
+            const jiraClient = require('jira-client');
+
+            const jira = new jiraClient({
+              host: 'https://testprojectgithub.atlassian.net',
+              username: 'app.satya.a@gmail.com',
+              password:  'ATATT3xFfGF0-XAPGvvbKpL0eodYMGMmEkPaIYh99zHmoYQlo6PhqoeMAFJ7C9iCpjfHs4djX7Wkb5mTnRp2xLdZyDDXY7NtDVWpanpbta3hX8IdXQ7sfndFpl20c_AZyEcTJWCk1gqFuBrzBVAKmrYxmi5tUQ_6h8lRLwy9quc9inheLIXe8f4=DBDD9963',
+            });
+
+            const issueId = context.payload.issue.id;
+            jira.issues.getIssue({ issueId })
+              .then(issue => {
+                // Process issue details and trigger deployment
+                core.setOutput('issueSummary', issue.fields.summary);
+                // ... other actions to trigger deployment
+              })
+              .catch(error => {
+                core.setFailed(`Error fetching issue: ${error}`);
+              });
